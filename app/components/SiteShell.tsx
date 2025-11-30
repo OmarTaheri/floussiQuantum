@@ -16,7 +16,14 @@ const links = [
   { href: "/models", label: "Model Monitor" },
 ];
 
-export function SiteShell({ children, heading, description }: { children: ReactNode; heading?: string; description?: string }) {
+type SiteShellProps = {
+  children: ReactNode;
+  heading?: string;
+  description?: string;
+  tab?: string;
+};
+
+export function SiteShell({ children, heading, description, tab }: SiteShellProps) {
   const pathname = usePathname();
   const router = useRouter();
   const [now, setNow] = useState<Date | null>(null);
@@ -48,7 +55,7 @@ export function SiteShell({ children, heading, description }: { children: ReactN
   };
 
   return (
-    <div className="app">
+    <div className="app" data-tab={tab ?? undefined}>
       <aside className="app-sidebar">
         <div>
           <div className="logo">
